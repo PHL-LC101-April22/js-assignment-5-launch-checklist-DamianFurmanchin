@@ -37,7 +37,26 @@ function formSubmission(document, list, pilot, copilot, fuelLevel, cargoLevel) {
             if (validateInput(pilot)=== "" || validateInput(copilot)=== "" || validateInput(fuel)=== "" || validateInput(fuel)=== "" ) {
             alert("All fields are required!");
             event.preventDefault();
+            } else {
+            pilotStatus.innerHTML = `${pilot}`;
+            copilotStatus.innerHTML = `${copilot}`
+            if (fuel < 10000) {
+               faultyItems = 'visible';
+               fuelStatus.innerHTML = "There is not enough fuel for the journey. ";
+               launchStatus.style.color = "red";
+               launchStatus.innerHTML = "Shuttle not ready for launch. ";
             }
+            if (cargo > 10000) {
+               faultyItems = 'visible';
+               cargoStatus.innerHTML = "The shuttle is too heavy to launch. ";
+               launchStatus.style.color = "red";
+               launchStatus.innerHTML = "Shuttle not ready for launch. ";
+            }
+        } else { (fuelLevel >= 10000 && cargoMass <= 10000) {
+            launchStatus.style.color = 'green';
+            launchStatus.innerHTML = "Shuttle not ready for launch. ";
+        }
+    }
         });        
 });
 }
